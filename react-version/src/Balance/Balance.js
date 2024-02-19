@@ -12,7 +12,7 @@ function Balance(props) {
       </div>
       <p className="balance__value">{balance}€</p>
     </div>
-  )
+  );
 }
 
-export default Balance
+export default Balance;

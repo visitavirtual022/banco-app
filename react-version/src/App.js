@@ -29,7 +29,6 @@ function App() {
         <Welcome />
         <Login />
       </nav>
-
       <main className="app">
         <Balance movements={movements} />
         <Movements />
@@ -45,7 +44,6 @@ function App() {
             <label className="form__label">Amount</label>
           </form>
         </div>
-
         <div className="operation operation--loan">
           <h2>Request loan</h2>
           <form className="form form--loan">
@@ -57,7 +55,6 @@ function App() {
             <label className="form__label form__label--loan">Amount</label>
           </form>
         </div>
-
         <div className="operation operation--close">
           <h2>Close account</h2>
           <form className="form form--close">
@@ -72,7 +69,6 @@ function App() {
             <label className="form__label">Confirm PIN</label>
           </form>
         </div>
-
         <p className="logout-timer">
           You will be logged out in <span className="timer">05:00</span>
         </p>
@@ -80,5 +76,4 @@ function App() {
     </>
   );
 }
-
 export default App;

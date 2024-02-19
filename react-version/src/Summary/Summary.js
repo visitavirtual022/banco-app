@@ -1,4 +1,4 @@
-import './Summary.css'
+import "./Summary.css";
 
 function Summary({ movements }) {
   // const { movements } = props
@@ -21,7 +21,7 @@ function Summary({ movements }) {
       <p className="summary__value summary__value--interest">0000€</p>
       <button className="btn--sort">↓ SORT</button>
     </div>
-  )
+  );
 }
 
-export default Summary
+export default Summary;
