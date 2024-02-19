@@ -61,28 +61,114 @@ const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
 
-// crear un funcion createUsernames que reciba un array de cuentas
-// y que devuelva un array con los nombres de usuario de la cuenta
-// en minuscula y sin espacios
-//por ejemplo, Juan Sánchez -> js
+// crear una función createUsernames que reciba un array de cuentas
+// y devuelva un nuevo array con los nombres de usuario de cada cuenta
+// en minúsculas y sin espacios
+// por ej, Juan Sánchez -> js
 // const account1 = {
-//   owner: "Juan Sánchez",
+//   owner: 'Juan Sánchez',
 //   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
 //   interestRate: 1.2, // %
 //   pin: 1111,
+//   username: 'js'
 // };
 
 // uso map (nuevo array) o forEach (modificar el array original)
 
 const createUsernames = function (accounts) {
   accounts.forEach(function (account) {
-    account.username = account.owner
-      .toLowerCase() //esto coloca el valor de account.owner en minuscula
-      .split(" ") // split coge un string y lo divide en elementos de array
-      .map((name) => name[0]) //quiero obtener de cada uno de los campos el primer caracter ['j', 's']
-      .join(""); // quiero unirlos ['js'] -> js
+    account.username = account.owner // Juan Sánchez
+      .toLowerCase() // juan sánchez
+      .split(" ") // ['juan', 'sánchez']
+      .map((name) => name[0]) // ['j', 's']
+      .join(""); // js (lo contrario que split)
   });
 };
 createUsernames(accounts);
 
-console.log(accounts);
+// TAREAS:
+// Mostrar el texto de bienvenida
+// cambiar opacidad
+// Quitar los movimientos que hay en el HTML
+// poner los nuevos movimientos en el HTML
+
+// Hacer lo mismo desde REACT
+
+// SUBIR APP EN REACT
+// 1. Se compila: npm run build
+// 2. Subir la carpeta build a certweb // gh-pages ojo la carpeta no está en el raíz
+
+btnLogin.addEventListener("click", function (e) {
+  // 1. no llamar al servidor!!
+  e.preventDefault();
+  // 2. Buscar cuenta de usuario y ver si existe
+  const currentAccount = accounts.find(
+    (account) => account.username === inputLoginUsername.value
+  ); // 1. recibir un objeto cuenta {pin: 1111, ...}
+  // 2. recibir undefined si no existe la cuenta
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    console.log("LOGIN CORRECTO");
+    // 3. Si existe, mostrar la app y el mensaje de bienvenida
+    containerApp.style.opacity = 100;
+    labelWelcome.textContent = `Bienvenido, ${
+      currentAccount.owner.split(" ")[0]
+    }`;
+    updateUI(currentAccount);
+  } else {
+    console.log("LOGIN INCORRECTO");
+    // Mostramos Usuario o contraseña incorrectos
+  }
+
+  // 4. Limpiar los campos
+  inputLoginUsername.value = inputLoginPin.value = "";
+  inputLoginPin.blur(); // quitar el foco
+});
+
+function updateUI({ movements }) {
+  containerMovements.innerHTML = "";
+  movements.forEach(function (mov, i) {
+    const type = mov > 0 ? "deposit" : "withdrawal";
+    const html = `
+    <div class="movements__row">
+      <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
+      <div class="movements__value">${mov}€</div>
+    </div>
+    `;
+    containerMovements.insertAdjacentHTML("afterbegin", html);
+  });
+}
+
+function displayMovements(movements) {
+  containerMovements.innerHTML = "";
+  movements.forEach(function (mov, i) {
+    const type = mov > 0 ? "deposit" : "withdrawal";
+    const html = `
+      <div class="movements__row">
+        <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
+        <div class="movements__value">${mov}€</div>
+      </div>
+    `;
+    containerMovements.insertAdjacentHTML("afterbegin", html);
+  });
+}
+
+const displayBalance = function (movements) {
+  constbalande = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance.toFixed(2)}€`;
+};
+
+const displaySummary = function (movements) {
+  const sumIn = movements
+    .filter((mov) => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${sumIn.toFixed(2)}€`;
+
+  const sumOut = movements
+    .filter((mov) => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(sumOut).toFixed(2)}€`;
+};
