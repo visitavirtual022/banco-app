@@ -1,4 +1,4 @@
-import "./Movements.css";
+import './Movements.css'
 
 function Movements() {
   return (
@@ -18,7 +18,7 @@ function Movements() {
         <div className="movements__value">-378€</div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Movements;
+export default Movements

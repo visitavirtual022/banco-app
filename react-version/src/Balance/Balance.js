@@ -1,4 +1,4 @@
-import "./Balance.css";
+import './Balance.css'
 function Balance() {
   return (
     <div className="balance">
@@ -10,7 +10,7 @@ function Balance() {
       </div>
       <p className="balance__value">0000€</p>
     </div>
-  );
+  )
 }
 
-export default Balance;
+export default Balance

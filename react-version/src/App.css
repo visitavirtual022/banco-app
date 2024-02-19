@@ -30,12 +30,6 @@ nav {
   padding: 0 2rem;
 }
 
-.btn--sort:hover,
-.btn--sort:focus {
-  outline: none;
-  color: #777;
-}
-
 /* MAIN */
 .app {
   position: relative;

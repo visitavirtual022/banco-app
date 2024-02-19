@@ -1,20 +1,20 @@
-import "./App.css";
-import Welcome from "./Welcome/Welcome";
-import Login from "./Login/Login";
-import Summary from "./Summary/Summary";
-import Movements from "./Movements/Movements";
-import Balance from "./Balance/Balance";
+import './App.css'
+import Welcome from './Welcome/Welcome'
+import Login from './Login/Login'
+import Summary from './Summary/Summary'
+import Movements from './Movements/Movements'
+import Balance from './Balance/Balance'
 
 function App() {
   return (
     <>
-      <main className="app">
-        <nav>
-          <Welcome />
-          <Login />
-        </nav>
-        <Balance />
+      <nav>
+        <Welcome />
+        <Login />
+      </nav>
 
+      <main className="app">
+        <Balance />
         <Movements />
         <Summary />
 

@@ -28,6 +28,12 @@
   color: #f5465d;
 }
 
+.btn--sort:hover,
+.btn--sort:focus {
+  outline: none;
+  color: #777;
+}
+
 .btn--sort {
   margin-left: auto;
   border: none;

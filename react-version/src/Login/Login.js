@@ -1,4 +1,4 @@
-import "./Login.css";
+import './Login.css'
 
 function Login() {
   return (
@@ -16,7 +16,7 @@ function Login() {
       />
       <button className="login__btn">&rarr;</button>
     </form>
-  );
+  )
 }
 
-export default Login;
+export default Login
